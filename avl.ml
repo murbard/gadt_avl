@@ -222,7 +222,7 @@ let rec zip_up : 'a ex_insert_zipper -> 'a ex_insert_zipper = function
                   right = Balanced {
                       left = right_left_right;
                       key = right_key;
-                      count = (get_count right_left_right) + (get_count right_right);
+                      count = (get_count right_left_right) + (get_count right_right) + 1;
                       right = right_right}}
               ), trail) |> zip_up            
             
@@ -232,7 +232,7 @@ let rec zip_up : 'a ex_insert_zipper -> 'a ex_insert_zipper = function
                 left = Balanced {
                     left;
                     key;
-                    count = (get_count left) + (get_count right_left_left);
+                    count = (get_count left) + (get_count right_left_left) + 1;
                     right = right_left_left;
                   };                
                 key = right_left_key;
@@ -240,7 +240,7 @@ let rec zip_up : 'a ex_insert_zipper -> 'a ex_insert_zipper = function
                 right = RightHeavy {
                     left = right_left_right;
                     key = right_key;
-                    count = (get_count right_left_right) + (get_count right_right);
+                    count = (get_count right_left_right) + (get_count right_right) + 1;
                     right = right_right                    
                   }}
               ), trail) |> zip_up
@@ -256,7 +256,7 @@ let rec zip_up : 'a ex_insert_zipper -> 'a ex_insert_zipper = function
                     right = right_left_left
                   };
                 key = right_left_key;
-                count = (get_count left) + (get_count right_left_left);
+                count = count + added;
                 right = Balanced {
                     left = right_left_right;
                     key = right_key;
